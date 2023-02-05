@@ -1,0 +1,14 @@
+/* Write your CSS here */
+.coverage {
+  background-color: rgb(65, 59, 59);
+  height: 600px;
+  padding: 30px;
+  width: 90%;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  margin: 30px;
+}
+.heading-v {
+  color: darkgray;
+}
