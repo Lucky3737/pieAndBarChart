@@ -6,9 +6,15 @@ const VaccinationByAge = props => {
 
   return (
     <div className="coverage">
-      <h1 className="heading-v">Vaccination BY Age</h1>
+      <h1 className="heading-v">Vaccination by Age</h1>
       <ResponsiveContainer width="100%" height="90%">
         <PieChart>
+          <Legend
+            iconType="circle"
+            layout="vertical"
+            verticalAlign="middle"
+            align="center"
+          />
           <Pie
             cy="40%"
             cx="70%"
@@ -21,16 +27,8 @@ const VaccinationByAge = props => {
           >
             <Cell name="18-44" fill="#a44c9e" />
             <Cell name="45-60" fill="#b3d23f" />
-            <Cell name="Above 60" fill="#fecba6" />
+            <Cell name="Above 60" fill=" #2d87bb" />
           </Pie>
-
-          <Legend
-            iconType="circle"
-            layout="horizontal"
-            verticalAlign="middle"
-            horizontalAlign="middle"
-            align="center"
-          />
         </PieChart>
       </ResponsiveContainer>
     </div>

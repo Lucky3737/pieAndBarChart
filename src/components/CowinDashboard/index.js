@@ -15,7 +15,7 @@ const api = {
 
 class CowinDashboard extends Component {
   state = {
-    apiStatus: '',
+    apiStatus: api.inProgress,
     vaccinationDataOf7Day: [],
     dataByAge: [],
     dataByGender: [],
@@ -26,12 +26,11 @@ class CowinDashboard extends Component {
   }
 
   getVaccinationData = async () => {
-    const url = 'https://apis.ccbp.in/covid-vaccination-dat'
+    this.setState({apiStatus: api.inProgress})
 
-    const options = {
-      method: 'GET',
-    }
-    const response = await fetch(url, options)
+    const url = 'https://apis.ccbp.in/covid-vaccination-data'
+
+    const response = await fetch(url)
     console.log(response)
     if (response.ok === true) {
       const data = await response.json()
@@ -58,7 +57,9 @@ class CowinDashboard extends Component {
         dataByGender: dataGender,
         apiStatus: api.success,
       })
-    } else {
+    }
+
+    if (response.status === 401) {
       this.setState({apiStatus: api.failure})
     }
   }
@@ -66,12 +67,12 @@ class CowinDashboard extends Component {
   renderOfContent = () => {
     const {vaccinationDataOf7Day, dataByAge, dataByGender} = this.state
     return (
-      <>
+      <div>
         <VaccinationCoverage data={vaccinationDataOf7Day} />
 
         <VaccinationByGender data={dataByGender} />
         <VaccinationByAge data={dataByAge} />
-      </>
+      </div>
     )
   }
 
@@ -80,13 +81,14 @@ class CowinDashboard extends Component {
       <img
         src="https://assets.ccbp.in/frontend/react-js/api-failure-view.png "
         alt="failure view"
+        className="failure-image"
       />
       <h1>Something Went Wrong</h1>
     </div>
   )
 
   renderLoader = () => (
-    <div data-testid="loader">
+    <div data-testid="loader" className="loader">
       <Loader type="ThreeDots" color="#ffffff" height={80} width={80} />
     </div>
   )
@@ -117,7 +119,7 @@ class CowinDashboard extends Component {
             alt="website logo"
             className="website-logo "
           />
-          <h1 className="heading">CO-WIN</h1>
+          <h1 className="heading">Co-WIN</h1>
         </div>
         <h1 className="cowin-heading">CoWIN Vaccination in India</h1>
         {this.renderComponent()}

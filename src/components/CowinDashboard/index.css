@@ -1,11 +1,16 @@
 /* Write your CSS here */
 .app {
-  max-height: 200vh;
+  min-height: 100vh;
+  max-height: 250vh;
   background-color: rgba(54, 51, 51, 0.897);
   padding: 30px;
   padding-left: 40px;
 }
-
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .heading {
   color: rgb(94, 184, 154);
 }
@@ -21,4 +26,8 @@
 }
 .cowin-heading {
   color: skyblue;
+}
+.failure-image {
+  height: 800px;
+  width: 80%;
 }
